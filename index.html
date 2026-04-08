@@ -1049,6 +1049,14 @@ function goProject(url){
   window.open(url, "_blank");
 }
 
+// MENÚ MÓVIL
+const toggle = document.querySelector(".menu-toggle");
+const menu = document.querySelector("nav ul");
+
+toggle.addEventListener("click", () => {
+  menu.classList.toggle("active");
+});
+
 document.querySelectorAll("nav ul li a").forEach(link => {
   link.addEventListener("click", () => {
     menu.classList.remove("active");
