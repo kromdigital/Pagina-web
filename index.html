@@ -776,25 +776,9 @@ nav {
   }
 
   nav ul.active {
-  display: flex;
-  animation: fadeMenu 0.3s ease;
-}
-
-@keyframes fadeMenu {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
+    display: flex;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-}
-
-.menu-toggle {
-  color: #ff2e2e;
 }
 </style>
 </head>
@@ -1053,13 +1037,6 @@ faders.forEach(fader =>{
 function goProject(url){
   window.open(url, "_blank");
 }
-
-const toggle = document.querySelector(".menu-toggle");
-const menu = document.querySelector("nav ul");
-
-toggle.addEventListener("click", () => {
-  menu.classList.toggle("active");
-});
 
 </script>
 
