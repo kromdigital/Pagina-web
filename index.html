@@ -752,13 +752,58 @@ nav {
   }
 
 }
+
+/* BOTÓN ☰ */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* MODO MÓVIL */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav {
+    padding: 10px 20px;
+  }
+
+  nav ul {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #050505;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+
+    /* oculto por defecto */
+    display: none;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+}
 </style>
 </head>
 <body>
 
 <nav>
   <a href="#inicio">
-  <img src="logo.png" alt="Logo" class="logo">
+  <img src="logo.png" alt="Logo" class="logo"></a>
+
+<!-- BOTÓN MENÚ (☰) -->
+  <div class="menu-toggle">☰</div>
+
+<!-- MENÚ -->
+  <ul>
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#portafolio">Trabajos</a></li>
@@ -1003,6 +1048,13 @@ faders.forEach(fader =>{
 function goProject(url){
   window.open(url, "_blank");
 }
+
+document.querySelectorAll("nav ul li a").forEach(link => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("active");
+  });
+});
+
 
 </script>
 
