@@ -776,13 +776,27 @@ nav {
   }
 
   nav ul.active {
-    display: flex;
+  display: flex;
+  animation: fadeMenu 0.3s ease;
+}
+
+@keyframes fadeMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 }
 
 .menu-toggle {
+  font-size: 28px;
   color: #ff2e2e;
+  margin-left: auto; /* 🔥 lo empuja a la derecha */
 }
 </style>
 </head>
