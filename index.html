@@ -752,6 +752,34 @@ nav {
   }
 
 }
+
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #050505;
+    margin-top: 10px;
+    padding: 20px 0;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+}
 </style>
 </head>
 <body>
@@ -760,6 +788,10 @@ nav {
   <a href="#inicio">
   <img src="logo.png" alt="Logo" class="logo">
 </a>
+
+ <!-- BOTÓN MENÚ (☰) -->
+  <div class="menu-toggle">☰</div>
+
   <ul>
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#servicios">Servicios</a></li>
@@ -1005,6 +1037,13 @@ faders.forEach(fader =>{
 function goProject(url){
   window.open(url, "_blank");
 }
+
+const toggle = document.querySelector(".menu-toggle");
+const menu = document.querySelector("nav ul");
+
+toggle.addEventListener("click", () => {
+  menu.classList.toggle("active");
+});
 
 </script>
 
