@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kromdigital.github.io/Pagina-web/sitemap.xml
+Sitemap: https://kromdigital.com.mx/sitemap.xml
