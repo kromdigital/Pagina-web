@@ -6,13 +6,13 @@
 <meta name="theme-color" content="#050505">
 <title>KROM DIGITAL | Diseño Web y Marketing Digital en Guadalajara</title>
 <meta name="description" content="KROM DIGITAL es una agencia digital en Guadalajara, Jalisco. Creamos páginas web, aplicaciones, contenido para redes sociales, campañas digitales, edición de video y soluciones digitales para negocios.">
-<link rel="canonical" href="https://kromdigital.github.io/Pagina-web/">
+<link rel="canonical" href="https://kromdigital.com.mx/">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="KROM DIGITAL | Diseño Web y Marketing Digital">
 <meta property="og:description" content="Diseño web, aplicaciones, marketing digital, contenido para redes sociales y soluciones digitales para negocios.">
-<meta property="og:url" content="https://kromdigital.github.io/Pagina-web/">
-<meta property="og:image" content="https://kromdigital.github.io/Pagina-web/logo.png">
+<meta property="og:url" content="https://kromdigital.com.mx/">
+<meta property="og:image" content="https://kromdigital.com.mx/logo.png">
 <meta property="og:site_name" content="KROM DIGITAL">
 <meta property="og:locale" content="es_MX">
 
@@ -367,6 +367,20 @@ h1{
 }
 .card:hover .visit,.card:focus-visible .visit{opacity:1;translate:0 0}
 
+
+/* portafolio: filas centradas y etiquetas */
+.cards.work{display:flex;flex-wrap:wrap;justify-content:center}
+.cards.work>.card{flex:0 1 calc((100% - 75px) / 4);min-width:250px}
+.thumb.shot img{object-position:top}
+.chip{
+  position:absolute;top:12px;left:12px;
+  background:rgba(5,5,5,.75);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border:1px solid var(--line);color:#fff;
+  font-size:11px;font-weight:600;
+  padding:5px 12px;border-radius:20px;
+}
+
 /* ============ SOBRE MÍ ============ */
 .about-container{
   display:grid;grid-template-columns:1fr 1fr;
@@ -516,6 +530,36 @@ h1{
 }
 .heart{display:inline-block;animation:beat 1.4s ease-in-out infinite}
 
+/* ============ MÚSICA ============ */
+#yt-player{position:fixed;left:-9999px;top:0;width:200px;height:200px;pointer-events:none}
+.music{
+  position:fixed;bottom:20px;left:20px;z-index:900;
+  display:flex;align-items:center;gap:10px;
+  height:48px;padding:0 18px 0 16px;
+  background:rgba(12,12,12,.85);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid var(--line);border-radius:30px;
+  color:#fff;font-size:13px;font-weight:600;cursor:pointer;
+  transition:border-color .3s, box-shadow .3s, transform .3s var(--ease);
+}
+.music[hidden]{display:none}
+.music:hover{border-color:var(--red);box-shadow:0 0 18px rgba(255,30,30,.4);transform:translateY(-2px)}
+.music.playing{border-color:var(--red)}
+.eq{display:flex;align-items:flex-end;gap:3px;height:16px}
+.eq i{display:block;width:3px;height:25%;border-radius:2px;background:var(--red)}
+.music.playing .eq i{animation:eq 1s ease-in-out infinite}
+.music.playing .eq i:nth-child(2){animation-delay:.25s}
+.music.playing .eq i:nth-child(3){animation-delay:.5s}
+.music.playing .eq i:nth-child(4){animation-delay:.12s}
+@keyframes eq{0%,100%{height:25%}50%{height:100%}}
+@media (max-width:520px){
+  .music{width:48px;padding:0;justify-content:center}
+  .music-label{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .music.playing .eq i{animation:none;height:70%}
+}
+
 /* ============ KEYFRAMES ============ */
 @keyframes lineUp{to{translate:0 0}}
 @keyframes rise{to{opacity:1;translate:0 0}}
@@ -591,8 +635,8 @@ h1{
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "KROM DIGITAL",
-  "url": "https://kromdigital.github.io/Pagina-web/",
-  "logo": "https://kromdigital.github.io/Pagina-web/logo.png",
+  "url": "https://kromdigital.com.mx/",
+  "logo": "https://kromdigital.com.mx/logo.png",
   "description": "Agencia digital especializada en diseño web, desarrollo de aplicaciones, marketing para redes sociales, campañas digitales, edición de video y contenido visual.",
   "telephone": "+52 33 2531 0977",
   "email": "krom.digital3s@gmail.com",
@@ -722,10 +766,11 @@ h1{
     <p class="lead">Algunos proyectos que muestran la calidad de mi trabajo</p>
   </div>
 
-  <div class="cards">
+  <div class="cards work">
     <div class="card fade" role="link" tabindex="0" onclick="goProject('https://lescharlie.github.io/asesoria-legal/')">
       <div class="thumb">
         <img loading="lazy" src="https://negociosyempresa.com/wp-content/uploads/2023/05/Estrategias-Para-Acelerar-el-Crecimiento-de-tu-Asesoria-Legal.jpg" alt="Página web de asesoría legal desarrollada por KROM DIGITAL">
+        <span class="chip">Legal</span>
         <span class="visit">Ver proyecto</span>
       </div>
       <h3>Sitio Web de Asesoria Legal</h3>
@@ -735,6 +780,7 @@ h1{
     <div class="card fade" role="link" tabindex="0" onclick="goProject('https://lescharlie.github.io/ferreteria-central/')">
       <div class="thumb">
         <img loading="lazy" src="https://maluma.com.co/wp-content/uploads/2025/07/ferreteria-1.webp" alt="Página web de tienda de suministros industriales desarrollada por KROM DIGITAL">
+        <span class="chip">Industrial</span>
         <span class="visit">Ver proyecto</span>
       </div>
       <h3>Tienda de Suministros Industriales</h3>
@@ -744,6 +790,7 @@ h1{
     <div class="card fade" role="link" tabindex="0" onclick="goProject('https://lescharlie.github.io/essenza-perfumeria/')">
       <div class="thumb">
         <img loading="lazy" src="https://media.timeout.com/images/106214739/image.jpg" alt="Página web de boutique de fragancias desarrollada por KROM DIGITAL">
+        <span class="chip">Perfumería</span>
         <span class="visit">Ver proyecto</span>
       </div>
       <h3>Boutique de Fragrancias</h3>
@@ -753,10 +800,66 @@ h1{
     <div class="card fade" role="link" tabindex="0" onclick="goProject('https://www.instagram.com/la_palapa_marisquera/')">
       <div class="thumb">
         <img loading="lazy" src="https://img.freepik.com/foto-gratis/gente-que-crea-contenido-comida-cargar-internet-amantes-comida_23-2151461665.jpg?semt=ais_incoming&w=740&q=80" alt="Contenido para redes sociales de La Palapa Marisquera creado por KROM DIGITAL">
+        <span class="chip">Redes sociales</span>
         <span class="visit">Ver proyecto</span>
       </div>
       <h3>Contenido para Redes</h3>
       <p>Contenido creativo para Instagram: fotos y videos editados que destacan la frescura y presentación de mariscos. Diseño vibrante y apetitoso para atraer clientes.</p>
+    </div>
+
+    <div class="card fade" role="link" tabindex="0" onclick="goProject('https://kromdigital.github.io/Alberto-Garcia---PaginaWeb/')">
+      <div class="thumb shot">
+        <img loading="lazy" src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fkromdigital.github.io%2FAlberto-Garcia---PaginaWeb%2F?w=800&h=500" alt="Página web de nutriólogo con acceso VIP, desarrollada por KROM DIGITAL" onerror="this.style.display='none'">
+        <span class="chip">Nutrición</span>
+        <span class="visit">Ver proyecto</span>
+      </div>
+      <h3>Página para Nutriólogo</h3>
+      <p>Página profesional para nutriólogo, con acceso VIP a otros apartados exclusivos del sitio.</p>
+    </div>
+    <div class="card fade" role="link" tabindex="0" onclick="goProject('https://dentallab.mx/')">
+      <div class="thumb shot">
+        <img loading="lazy" src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fdentallab.mx%2F?w=800&h=500" alt="Página web de consultorio dental desarrollada por KROM DIGITAL" onerror="this.style.display='none'">
+        <span class="chip">Odontología</span>
+        <span class="visit">Ver proyecto</span>
+      </div>
+      <h3>Sitio para Consultorio Dental</h3>
+      <p>Diseño limpio y confiable para un consultorio dental, pensado para que los pacientes conozcan los servicios y se pongan en contacto fácilmente.</p>
+    </div>
+    <div class="card fade" role="link" tabindex="0" onclick="goProject('https://kromdigital.github.io/pagina-web-dental-monica-itzel/')">
+      <div class="thumb shot">
+        <img loading="lazy" src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fkromdigital.github.io%2Fpagina-web-dental-monica-itzel%2F?w=800&h=500" alt="Página web para odontología desarrollada por KROM DIGITAL" onerror="this.style.display='none'">
+        <span class="chip">Odontología</span>
+        <span class="visit">Ver proyecto</span>
+      </div>
+      <h3>Página para Odontólogo</h3>
+      <p>Presencia digital cercana y profesional para un odontólogo, con su perfil y servicios a la vista.</p>
+    </div>
+    <div class="card fade" role="link" tabindex="0" onclick="goProject('https://kromdigital.github.io/Pdga.-Susy-Larios/')">
+      <div class="thumb shot">
+        <img loading="lazy" src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fkromdigital.github.io%2FPdga.-Susy-Larios%2F?w=800&h=500" alt="Página web para podología desarrollada por KROM DIGITAL" onerror="this.style.display='none'">
+        <span class="chip">Podología</span>
+        <span class="visit">Ver proyecto</span>
+      </div>
+      <h3>Página para Podología</h3>
+      <p>Sitio claro y amable que da a conocer los servicios de una podóloga y facilita el contacto con nuevos pacientes.</p>
+    </div>
+    <div class="card fade" role="link" tabindex="0" onclick="goProject('https://kromdigital.github.io/THE-BOSS-MOY/')">
+      <div class="thumb shot">
+        <img loading="lazy" src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fkromdigital.github.io%2FTHE-BOSS-MOY%2F?w=800&h=500" alt="Página web para creador digital desarrollada por KROM DIGITAL" onerror="this.style.display='none'">
+        <span class="chip">Creador digital</span>
+        <span class="visit">Ver proyecto</span>
+      </div>
+      <h3>Página para Creador Digital</h3>
+      <p>Marca personal con carácter: un sitio que reúne el contenido y las redes de un creador digital en un solo lugar.</p>
+    </div>
+    <div class="card fade" role="link" tabindex="0" onclick="goProject('https://kromdigital.github.io/frank-tattoo-studio/')">
+      <div class="thumb shot">
+        <img loading="lazy" src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fkromdigital.github.io%2Ffrank-tattoo-studio%2F?w=800&h=500" alt="Página web para estudio de tatuajes desarrollada por KROM DIGITAL" onerror="this.style.display='none'">
+        <span class="chip">Tatuajes</span>
+        <span class="visit">Ver proyecto</span>
+      </div>
+      <h3>Estudio de Tatuajes</h3>
+      <p>Estética fuerte y visual para un tatuador, que muestra su estilo y atrae nuevos clientes.</p>
     </div>
   </div>
 </section>
@@ -910,6 +1013,12 @@ h1{
   </div>
 </footer>
 
+<button class="music" aria-label="Reproducir música" aria-pressed="false" hidden>
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="music-label">Música</span>
+</button>
+<div id="yt-player" aria-hidden="true"></div>
+
 <a class="whatsapp" href="https://wa.me/523325310977" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
@@ -1047,6 +1156,63 @@ navLinks.forEach(l => {
   const sec = document.querySelector(l.getAttribute('href'));
   if(sec) spy.observe(sec);
 });
+
+// ---- Música de fondo (YouTube). Pega aquí el link; déjalo vacío para ocultar el botón.
+const MUSIC_URL = 'https://youtu.be/INwS8xzRw0E?si=-IHmy7LlWNlDvxbw';
+
+(function(){
+  const m = MUSIC_URL.match(/(?:youtu\.be\/|v=|\/embed\/|\/shorts\/)([\w-]{11})/);
+  const btn = document.querySelector('.music');
+  if(!m || !btn) return;
+  const videoId = m[1];
+  let player = null, ready = false, wantPlay = false;
+
+  btn.hidden = false;
+
+  function setState(on){
+    btn.classList.toggle('playing', on);
+    btn.setAttribute('aria-pressed', on);
+    btn.setAttribute('aria-label', on ? 'Pausar música' : 'Reproducir música');
+  }
+
+  window.onYouTubeIframeAPIReady = function(){
+    player = new YT.Player('yt-player', {
+      width:'200', height:'200', videoId:videoId,
+      playerVars:{ playsinline:1, controls:0, loop:1, playlist:videoId, rel:0 },
+      events:{
+        onReady:function(){
+          ready = true;
+          player.setVolume(40);
+          if(wantPlay) player.playVideo();
+        },
+        onStateChange:function(e){
+          if(e.data === YT.PlayerState.PLAYING) setState(true);
+          if(e.data === YT.PlayerState.PAUSED) setState(false);
+        }
+      }
+    });
+  };
+
+  // carga la API de YouTube cuando la página ya terminó de cargar
+  addEventListener('load', function(){
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  });
+
+  btn.addEventListener('click', function(){
+    const playing = btn.classList.contains('playing');
+    if(playing){
+      wantPlay = false;
+      player && player.pauseVideo();
+      setState(false);
+    } else {
+      wantPlay = true;
+      if(ready) player.playVideo();
+      setState(true);
+    }
+  });
+})();
 
 lucide.createIcons();
 </script>
