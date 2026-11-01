@@ -381,6 +381,78 @@ h1{
   padding:5px 12px;border-radius:20px;
 }
 
+
+/* ============ SELLOS DIGITALES ============ */
+.sellos{
+  position:relative;isolation:isolate;overflow:hidden;
+  padding:clamp(70px,10vw,110px) var(--pad-x);
+  border-block:1px solid var(--line);
+  background:linear-gradient(180deg, transparent, rgba(255,30,30,.07) 50%, transparent);
+}
+.sellos-container{
+  display:grid;grid-template-columns:1.05fr 1fr;
+  gap:clamp(30px,5vw,70px);align-items:center;
+}
+.sellos-text h2{
+  font-size:clamp(1.5rem,3.4vw,2.4rem);
+  line-height:1.2;font-weight:600;text-wrap:balance;
+}
+.sellos-text h2 span{color:var(--red)}
+.sellos-points{list-style:none;display:grid;gap:16px;margin:26px 0 32px}
+.sellos-points li{display:flex;gap:14px;align-items:flex-start}
+.sellos-points .icon{width:44px;height:44px;margin:0;flex:none;border-radius:12px}
+.sellos-points .icon svg{width:20px;height:20px}
+.sellos-points b{display:block;font-size:.95rem}
+.sellos-points span{font-size:13.5px;opacity:.65}
+.sellos .buttons{justify-content:flex-start;margin-top:0}
+a.btn-main{display:inline-flex;align-items:center;text-decoration:none}
+
+.sello-visual{position:relative;width:100%;max-width:440px;margin-inline:auto;padding:44px 10px 54px}
+.sello-card{
+  background:linear-gradient(145deg,#1d1d20,#0c0c0c);
+  border:1px solid var(--line);border-radius:22px;
+  padding:26px 26px 22px;
+  transform:rotate(-3deg);
+  box-shadow:0 30px 60px -28px rgba(255,30,30,.45);
+  transition:transform .6s var(--ease);
+}
+.sello-visual:hover .sello-card{transform:rotate(0)}
+.sello-card small{font-size:11px;letter-spacing:2px;font-weight:600;opacity:.8}
+.sello-card h3{font-family:var(--display);font-size:1.3rem;font-weight:600;margin:18px 0 6px}
+.sello-card p{font-size:13px;opacity:.65}
+.sdots{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:22px;justify-items:center}
+.sdot{
+  width:38px;height:38px;border-radius:50%;
+  display:grid;place-items:center;
+  border:1.5px solid #555;color:#777;font-size:11px;
+  transition:background .4s, border-color .4s, color .4s, transform .5s var(--ease);
+}
+.sdot.on{color:transparent;transform:scale(.8)}
+.sello-visual.show .sdot.on{
+  background:var(--red);border-color:var(--red);color:#fff;transform:scale(1);
+  transition-delay:calc(var(--k) * .14s + .5s);
+}
+.schip{
+  position:absolute;
+  background:rgba(12,12,12,.92);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--line);border-radius:12px;
+  padding:10px 14px;font-size:12px;
+  box-shadow:0 14px 30px -14px rgba(0,0,0,.7);
+  animation:bob 5s ease-in-out infinite;
+}
+.schip small{display:block;color:var(--red);font-size:10px;font-weight:600;letter-spacing:1.5px}
+.schip b{display:block;font-size:13px;margin-top:2px}
+.schip.a{top:6px;right:0}
+.schip.b{bottom:6px;left:0;animation-delay:-2.5s}
+
+@media (max-width:900px){
+  .sellos-container{grid-template-columns:1fr}
+}
+
+
+
+
 /* ============ SOBRE MÍ ============ */
 .about-container{
   display:grid;grid-template-columns:1fr 1fr;
@@ -609,6 +681,17 @@ h1{
   .cta-features{flex-direction:column;gap:10px}
 }
 
+/* portafolio responsive */
+@media (max-width:1100px){
+  .cards.work>.card{flex:0 1 calc((100% - 25px) / 2)}
+}
+@media (max-width:640px){
+  .cards.work>.card{flex:1 1 100%;min-width:0;padding:22px}
+}
+@media (hover:none){
+  .visit{opacity:1;translate:0 0}
+}
+
 /* accesibilidad: respetar "reducir movimiento" */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{
@@ -661,6 +744,7 @@ h1{
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#portafolio">Trabajos</a></li>
+    <li><a href="#sellos">Sellos</a></li>
     <li><a href="#sobre">Sobre mí</a></li>
     <li><a href="#beneficios">Beneficios</a></li>
   </ul>
@@ -861,6 +945,62 @@ h1{
       <h3>Estudio de Tatuajes</h3>
       <p>Estética fuerte y visual para un tatuador, que muestra su estilo y atrae nuevos clientes.</p>
     </div>
+  </div>
+</section>
+
+
+<!-- SELLOS DIGITALES -->
+<section id="sellos" class="sellos">
+  <div class="sellos-container">
+
+    <div class="sellos-text fade">
+      <p class="tag">LO NUEVO DE KROM</p>
+      <h2>Una tarjeta de sellos que <span>vive en el celular</span></h2>
+      <p class="desc">Programa de lealtad digital para cafeterías, restaurantes, tiendas y barberías. Cada visita suma un sello y, al completar la tarjeta, el cliente recibe su premio.</p>
+
+      <ul class="sellos-points">
+        <li>
+          <div class="icon"><i data-lucide="smartphone"></i></div>
+          <div><b>Sin plástico, sin apps</b><span>La tarjeta vive en el celular del cliente.</span></div>
+        </li>
+        <li>
+          <div class="icon"><i data-lucide="gift"></i></div>
+          <div><b>Premios que motivan</b><span>Tú defines el beneficio y recompensas la constancia.</span></div>
+        </li>
+        <li>
+          <div class="icon"><i data-lucide="mouse-pointer-click"></i></div>
+          <div><b>Demo interactiva</b><span>Suma sellos tú mismo y desbloquea la recompensa.</span></div>
+        </li>
+      </ul>
+
+      <div class="buttons">
+        <a class="btn-main" href="https://kromdigital.github.io/SELLOS-DIGITALES/" target="_blank" rel="noopener">Probar demo interactiva</a>
+        <a class="btn-outline" href="https://wa.me/523325310977?text=Hola%20KROM%20DIGITAL%2C%20me%20interesa%20la%20tarjeta%20de%20sellos%20digitales%20para%20mi%20negocio" target="_blank" rel="noopener">Lo quiero en mi negocio</a>
+      </div>
+    </div>
+
+    <div class="sello-visual fade" aria-hidden="true">
+      <div class="schip a"><small>RECOMPENSA</small><b>Bebida gratis desbloqueada</b></div>
+      <div class="sello-card">
+        <small>CLUB KROM</small>
+        <h3>Cada visita suma.</h3>
+        <p>Tu próxima bebida va por nuestra cuenta.</p>
+        <div class="sdots">
+          <span class="sdot on" style="--k:0">✓</span>
+          <span class="sdot on" style="--k:1">✓</span>
+          <span class="sdot on" style="--k:2">✓</span>
+          <span class="sdot on" style="--k:3">✓</span>
+          <span class="sdot on" style="--k:4">✓</span>
+          <span class="sdot on" style="--k:5">✓</span>
+          <span class="sdot">07</span>
+          <span class="sdot">08</span>
+          <span class="sdot">09</span>
+          <span class="sdot">10</span>
+        </div>
+      </div>
+      <div class="schip b"><small>ESTA SEMANA</small><b>+24 visitas registradas</b></div>
+    </div>
+
   </div>
 </section>
 
