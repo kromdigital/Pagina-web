@@ -76,19 +76,42 @@ function toast(txt) {
 }
 
 /* ---------- catálogo ---------- */
-function tarjeta(sv) {
+function tarjeta(sv, ci, si) {
   const tiers = sv.niv.map(([precio, incluye], i) => {
     const n = NIVELES[i];
-    const msg = `Hola Krom Digital, me interesa el servicio de ${sv.nombre} en nivel ${n.nombre} (${fmt(precio, '').replace(/<[^>]+>/g, '')}${sv.extra === 'mes' ? '/mes' : ''}).`;
-    return `<a class="tier t-${n.id}" href="${wa(msg)}" target="_blank" rel="noopener" aria-label="${sv.nombre}, nivel ${n.nombre}: cotizar por WhatsApp">
-      <span class="tl">${n.nombre}</span><strong>${fmt(precio, sv.extra)}</strong><span class="td">${incluye}</span><span class="go">Lo quiero →</span></a>`;
+    return `<button type="button" class="tier t-${n.id}" data-c="${ci}" data-s="${si}" data-n="${i}" aria-haspopup="dialog" aria-label="${sv.nombre}, nivel ${n.nombre}: ver detalle y cotizar">
+      <span class="tl">${n.nombre}</span><strong>${fmt(precio, sv.extra)}</strong><span class="td">${incluye}</span><span class="go">Lo quiero →</span></button>`;
   }).join('');
   return `<article class="svc"><div class="sh"><div class="ico"><svg viewBox="0 0 16 16">${ICONOS[sv.icono]}</svg></div>
     <div><h3>${sv.nombre}</h3><p>${sv.frase}</p></div></div><div class="tiers">${tiers}</div></article>`;
 }
 function categoria(c) {
-  return `<section class="cat" id="${c.id}"><div class="cat-head"><h2>${c.titulo}</h2><p>${c.desc}</p></div>${c.servicios.map(tarjeta).join('')}</section>`;
+  const ci = CATEGORIAS.indexOf(c);
+  return `<section class="cat" id="${c.id}"><div class="cat-head"><h2>${c.titulo}</h2><p>${c.desc}</p></div>${c.servicios.map((sv, si) => tarjeta(sv, ci, si)).join('')}</section>`;
 }
+/* ---------- ventana de confirmación (evita abrir WhatsApp por error) ---------- */
+const dlg = $('#confirm');
+let ultimoBoton = null;
+function abrirConfirmacion(btn) {
+  const sv = CATEGORIAS[+btn.dataset.c].servicios[+btn.dataset.s], i = +btn.dataset.n;
+  const [precio, incluye] = sv.niv[i], n = NIVELES[i];
+  const txt = (sv.extra === 'desde' ? 'desde ' : '') + '$' + precio.toLocaleString('es-MX') + (sv.extra === 'mes' ? '/mes' : '');
+  const url = wa(`Hola Krom Digital, me interesa el servicio de ${sv.nombre} en nivel ${n.nombre} (${txt}).`);
+  if (typeof dlg.showModal !== 'function') { window.open(url, '_blank', 'noopener'); return; }
+  $('#c-level').textContent = 'Nivel ' + n.nombre;
+  $('#c-title').textContent = sv.nombre;
+  $('#c-price').innerHTML = fmt(precio, sv.extra);
+  $('#c-inc').textContent = incluye;
+  $('#c-go').href = url;
+  ultimoBoton = btn;
+  dlg.showModal();
+}
+$('#catalog').addEventListener('click', e => { const b = e.target.closest('.tier'); if (b) abrirConfirmacion(b); });
+$('#c-cancel').addEventListener('click', () => dlg.close());
+$('#c-go').addEventListener('click', () => setTimeout(() => dlg.close(), 200));
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });   // clic en el fondo = cerrar
+dlg.addEventListener('close', () => { if (ultimoBoton) ultimoBoton.focus({ preventScroll: true }); });
+
 let activa = 'todos';
 function mostrar(id, actualizarHash = true) {
   activa = id;

@@ -92,7 +92,7 @@
       <div class="faq-list">
         <details><summary>¿Los precios son finales?<svg viewBox="0 0 16 16"><path d="M3 6l5 5 5-5"/></svg></summary><p>Son precios base en pesos mexicanos (MXN). Pueden variar según las necesidades de cada proyecto. Escríbenos y te damos una cotización exacta.</p></details>
         <details><summary>¿Qué significan “desde” y “/mes”?<svg viewBox="0 0 16 16"><path d="M3 6l5 5 5-5"/></svg></summary><p>“Desde” indica el precio mínimo, porque depende de medidas o materiales. “/mes” indica un servicio que se paga cada mes. Los demás son un pago único.</p></details>
-        <details><summary>¿Cómo empiezo?<svg viewBox="0 0 16 16"><path d="M3 6l5 5 5-5"/></svg></summary><p>Elige un servicio y toca el nivel que te interesa: se abre un mensaje de WhatsApp ya listo para enviarnos.</p></details>
+        <details><summary>¿Cómo empiezo?<svg viewBox="0 0 16 16"><path d="M3 6l5 5 5-5"/></svg></summary><p>Elige un servicio y toca el nivel que te interesa: verás un resumen y, si lo confirmas, se abre WhatsApp con el mensaje ya listo para enviarnos.</p></details>
         <details><summary>¿Puedo combinar servicios de distintos niveles?<svg viewBox="0 0 16 16"><path d="M3 6l5 5 5-5"/></svg></summary><p>Sí. Puedes elegir el nivel que mejor te convenga en cada servicio.</p></details>
       </div>
     </div>
@@ -116,6 +116,20 @@
     </div>
   </div>
 </footer>
+
+<dialog class="modal" id="confirm" aria-labelledby="c-title">
+  <div class="m-box">
+    <p class="m-eyebrow" id="c-level"></p>
+    <h3 id="c-title"></h3>
+    <p class="m-price" id="c-price"></p>
+    <p class="m-inc" id="c-inc"></p>
+    <p class="m-note">Se abrirá WhatsApp con un mensaje listo para enviar a Krom Digital. No se envía nada hasta que tú lo confirmes.</p>
+    <div class="m-actions">
+      <a class="btn btn-red" id="c-go" href="#" target="_blank" rel="noopener">Continuar a WhatsApp</a>
+      <button class="btn btn-line" id="c-cancel" type="button">Cancelar</button>
+    </div>
+  </div>
+</dialog>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="script.js"></script>

@@ -65,7 +65,7 @@ h2{font-size:clamp(28px,6vw,44px)}
 .ico{width:54px;height:54px;flex:none;border-radius:15px;background:var(--soft);color:var(--red);display:grid;place-items:center}.ico svg{width:26px;height:26px}
 .sh h3{font-size:22px;letter-spacing:-.02em}.sh p{color:var(--mut);font-size:14px;margin-top:4px}
 .tiers{display:grid;gap:10px;margin-top:18px}
-.tier{position:relative;display:grid;grid-template-columns:1fr auto;gap:2px 14px;align-items:center;padding:16px 18px;border-radius:18px;background:var(--bg2);border:1px solid transparent;transition:transform .25s,border-color .25s,box-shadow .25s}
+.tier{font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%;appearance:none;-webkit-appearance:none;position:relative;display:grid;grid-template-columns:1fr auto;gap:2px 14px;align-items:center;padding:16px 18px;border-radius:18px;background:var(--bg2);border:1px solid transparent;transition:transform .25s,border-color .25s,box-shadow .25s}
 .tier:hover{transform:translateY(-3px);border-color:var(--red);box-shadow:0 14px 30px -18px rgba(224,40,42,.6)}
 .t-profesional{background:var(--card);border-color:var(--line)}
 .t-elite{background:var(--dark);color:#fff}
@@ -74,6 +74,23 @@ h2{font-size:clamp(28px,6vw,44px)}
 .tier strong small{font:500 11px var(--mn);letter-spacing:0;opacity:.65}
 .td{font-size:13.5px;color:var(--mut);line-height:1.35}.t-elite .td{color:#b9bac0}
 .go{display:none;font:700 12px var(--mp);color:var(--red);margin-top:10px}.t-elite .go{color:#ff6b6e}
+
+/* ventana de confirmación */
+.modal{border:0;padding:0;margin:auto;width:min(92vw,440px);border-radius:26px;background:var(--card);color:var(--ink);box-shadow:0 30px 80px -20px rgba(0,0,0,.55)}
+.modal::backdrop{background:rgba(12,12,15,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.modal[open]{animation:pop .28s cubic-bezier(.22,1,.36,1)}
+.modal[open]::backdrop{animation:fadein .25s}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}}
+@keyframes fadein{from{opacity:0}}
+body:has(dialog[open]){overflow:hidden}
+.m-box{padding:28px 26px 24px}
+.m-eyebrow{font:500 11px/1 var(--mn);letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.m-box h3{font-size:26px;letter-spacing:-.03em}
+.m-price{font:700 44px/1 var(--sg);letter-spacing:-.04em;margin:16px 0 8px}
+.m-price small{font:500 13px var(--mn);letter-spacing:0;opacity:.6}
+.m-inc{color:var(--mut)}
+.m-note{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--mut)}
+.m-actions{display:grid;gap:10px;margin-top:20px}
 
 /* niveles, faq, cta, footer */
 .levels,.faq{padding:64px 0}.levels{background:var(--bg2)}
