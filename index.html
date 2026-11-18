@@ -456,7 +456,15 @@ a.btn-main{display:inline-flex;align-items:center;text-decoration:none}
   .sellos-container{grid-template-columns:1fr}
 }
 
-
+/* enlace sutil a precios */
+.more-link{margin-top:36px}
+.more-link a{
+  display:inline-flex;align-items:center;gap:8px;
+  color:#fff;text-decoration:none;font-size:15px;font-weight:600;
+  padding-bottom:4px;border-bottom:1px solid var(--line);
+  transition:color .3s, border-color .3s, gap .3s var(--ease);
+}
+.more-link a:hover{color:var(--red);border-color:var(--red);gap:14px}
 
 
 /* ============ SOBRE MÍ ============ */
@@ -749,6 +757,7 @@ a.btn-main{display:inline-flex;align-items:center;text-decoration:none}
   <ul>
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#servicios">Servicios</a></li>
+    <li><a href="precios/">Precios</a></li>
     <li><a href="#portafolio">Trabajos</a></li>
     <li><a href="#sellos">Sellos</a></li>
     <li><a href="#sobre">Sobre mí</a></li>
@@ -846,6 +855,7 @@ a.btn-main{display:inline-flex;align-items:center;text-decoration:none}
       <p>Diseño estratégico que comunica y potencia tu presencia digital.</p>
     </div>
   </div>
+    <p class="more-link fade"><a href="precios/">Ver servicios y precios <span aria-hidden="true">→</span></a></p>
 </section>
 
 <!-- PORTAFOLIO -->
@@ -1138,6 +1148,7 @@ a.btn-main{display:inline-flex;align-items:center;text-decoration:none}
         <li><a href="#servicios">Fotografía Profesional</a></li>
         <li><a href="#servicios">Contenido Visual</a></li>
         <li><a href="#servicios">Branding Digital</a></li>
+        <li><a href="precios/">Precios</a></li>
       </ul>
     </div>
 
@@ -1299,7 +1310,9 @@ const spy = new IntersectionObserver(entries => {
   });
 }, { rootMargin:'-45% 0px -50% 0px' });
 navLinks.forEach(l => {
-  const sec = document.querySelector(l.getAttribute('href'));
+  const href = l.getAttribute('href');
+  if(href.charAt(0) !== '#') return;
+  const sec = document.querySelector(href);
   if(sec) spy.observe(sec);
 });
 
