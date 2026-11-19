@@ -646,6 +646,41 @@ a.btn-main{display:inline-flex;align-items:center;text-decoration:none}
   .music.playing .eq i{animation:none;height:70%}
 }
 
+
+/* ============ KROM CITY ============ */
+.city-preview{
+  position:relative;width:100%;max-width:420px;margin-inline:auto;
+  aspect-ratio:4/5;border-radius:28px;overflow:hidden;
+  border:1px solid var(--line);background:#050305;
+  box-shadow:0 30px 60px -28px rgba(255,30,30,.45);
+}
+.city-poster{
+  position:absolute;inset:0;width:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+  border:0;cursor:pointer;color:#fff;text-align:center;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(255,30,30,.45), transparent 60%),
+    linear-gradient(rgba(255,30,30,.12) 1px, transparent 1px) 0 0/100% 28px,
+    linear-gradient(180deg,#0a0508,#1a060c 70%,#050305);
+}
+.city-poster::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:34%;background:#0b0408;
+  clip-path:polygon(0 100%,0 55%,6% 55%,6% 30%,12% 30%,12% 60%,18% 60%,18% 20%,25% 20%,25% 50%,31% 50%,31% 35%,38% 35%,38% 65%,45% 65%,45% 25%,52% 25%,52% 55%,59% 55%,59% 15%,66% 15%,66% 50%,72% 50%,72% 30%,79% 30%,79% 60%,85% 60%,85% 22%,92% 22%,92% 48%,100% 48%,100% 100%);
+}
+.city-poster>*{position:relative;z-index:1}
+.city-poster b{display:block;font-family:var(--display);font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:.08em;text-shadow:0 0 24px rgba(255,30,30,.8)}
+.city-poster small{display:block;margin-top:6px;font-size:11px;letter-spacing:3px;color:#ff7585;font-weight:600}
+.city-play{
+  width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+  background:var(--red);font-size:22px;padding-left:4px;
+  animation:pulse 2s infinite;transition:transform .3s var(--ease);
+}
+.city-poster:hover .city-play{transform:scale(1.12)}
+.city-preview iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media (max-width:1100px){nav ul{gap:20px}}
+
+
+
 /* ============ KEYFRAMES ============ */
 @keyframes lineUp{to{translate:0 0}}
 @keyframes rise{to{opacity:1;translate:0 0}}
@@ -762,6 +797,7 @@ a.btn-main{display:inline-flex;align-items:center;text-decoration:none}
     <li><a href="#sellos">Sellos</a></li>
     <li><a href="#sobre">Sobre mí</a></li>
     <li><a href="#beneficios">Beneficios</a></li>
+    <li><a href="#krom-city">Krom City</a></li>
   </ul>
 
   <a class="btn" href="#contacto">Contáctame</a>
@@ -1124,6 +1160,47 @@ a.btn-main{display:inline-flex;align-items:center;text-decoration:none}
   </div>
 </section>
 
+
+<!-- KROM CITY -->
+<section id="krom-city" class="sellos city">
+  <div class="sellos-container">
+
+    <div class="sellos-text fade">
+      <p class="tag">EXPERIENCIA KROM</p>
+      <h2>Entra a <span>Krom City</span>, nuestra ciudad futurista</h2>
+      <p class="desc">Un fondo interactivo en 3D hecho por KROM DIGITAL: una ciudad cyberpunk con pantallas gigantes, autos, drones y música. Úsalo como fondo en tu celular o en pantallas grandes.</p>
+
+      <ul class="sellos-points">
+        <li>
+          <div class="icon"><i data-lucide="monitor-smartphone"></i></div>
+          <div><b>Celular y pantallas grandes</b><span>Se adapta a vertical y horizontal, listo para pantalla completa.</span></div>
+        </li>
+        <li>
+          <div class="icon"><i data-lucide="music"></i></div>
+          <div><b>Con tu música</b><span>Enciende el synthwave o pega un link de YouTube o Spotify.</span></div>
+        </li>
+        <li>
+          <div class="icon"><i data-lucide="sparkles"></i></div>
+          <div><b>Hecho para impresionar</b><span>Letreros animados, efecto glitch e intro cinematográfica.</span></div>
+        </li>
+      </ul>
+
+      <div class="buttons">
+        <a class="btn-main" href="krom-city/">Entrar a Krom City</a>
+        <a class="btn-outline" href="https://wa.me/523325310977?text=Hola%20KROM%20DIGITAL%2C%20me%20interesa%20un%20fondo%20animado%20como%20Krom%20City%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero uno para mi negocio</a>
+      </div>
+    </div>
+
+    <div class="city-preview fade">
+      <button class="city-poster" type="button" aria-label="Cargar vista previa de Krom City">
+        <span><b>KROM CITY</b><small>NEO GDL // FONDO INTERACTIVO</small></span>
+        <span class="city-play" aria-hidden="true">▶</span>
+      </button>
+    </div>
+
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-container">
@@ -1370,6 +1447,21 @@ const MUSIC_URL = 'https://youtu.be/INwS8xzRw0E?si=-IHmy7LlWNlDvxbw';
       if(ready) player.playVideo();
       setState(true);
     }
+  });
+})();
+
+// ---- Krom City: la vista previa se carga solo al hacer clic
+(function(){
+  const btn = document.querySelector('.city-poster');
+  if(!btn) return;
+  btn.addEventListener('click', function(){
+    const f = document.createElement('iframe');
+    f.src = 'krom-city/';
+    f.title = 'Vista previa de Krom City';
+    f.allow = 'autoplay; fullscreen';
+    f.setAttribute('allowfullscreen', '');
+    btn.parentNode.appendChild(f);
+    btn.remove();
   });
 })();
 
